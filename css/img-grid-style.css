@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: ghostwhite;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%
+}
+
+/*http://v4-alpha.getbootstrap.com/layout/overview/#responsive-breakpoints*/
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199px) {
+}
+
+/*  Medium devices (tablets, less than 992px) */
+@media (max-width: 991px) {
+}
+
+/* Small devices (landscape phones, less than 768px)  */
+@media (max-width: 767px) {
+    .column {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .column {
+        flex: 100%;
+        max-width: 100%;
+    }
+}

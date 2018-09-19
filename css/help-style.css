@@ -1,0 +1,169 @@
+/*
+        font-size: 100% = 1em = 1rem = 16px = 12pt (by browsers default)
+        font-size: 10px;        //  10px * 1,6rem = 16px
+        font-size: 100%;        //  100% = 1em = 1rem = 16px
+        font-size: 62.5%;       //  100% * 10px/16px = 62.5%
+ */
+
+* {
+    box-sizing: border-box; /* окончательная ширина и высота каждого объекта на странице должна включать содержимое, padding и border; правило добавляет padding внутрь блока, вместо его добавления снаружи */
+}
+
+html {
+    font-size: 62.5%; /* устанавливает базовый шрифт в 10px (1,6rem = 16px) */
+    background-color: seashell;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px; /* rem не поддерживается IE8 и ниже */
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 32px; /* rem не поддерживается IE8 и ниже */
+    font-size: 3.2rem;
+}
+
+p {
+    font-size: 16px; /* rem не поддерживается IE8 и ниже */
+    font-size: 1.6rem; /* = 16px */
+}
+
+.info {
+    border: 1px solid steelblue;
+    padding: 50px;
+    background-color: rgba(0, 0, 128, 0.08);
+}
+
+.flex-container-row-nowrap {
+    height: 600px;
+    /*height: auto;*/
+    /*width: auto;*/
+    width: 600px;
+
+    display: flex;
+    flex-direction: row;
+    /*flex-direction: row-reverse;*/
+    flex-wrap: nowrap;
+
+
+    border: 1px solid teal;
+    background-color: rgba(0, 128, 128, 0.26);
+}
+
+.flex-container-row-nowrap:after {
+    font-size: 9px;
+    font-size: 0.9rem;
+    content: attr(title);
+    color: steelblue;
+    position: absolute;
+}
+
+.flex-container-row-wrap {
+    height: 600px;
+    /*height: auto;*/
+    /*width: auto;*/
+    width: 600px;
+
+    display: flex;
+    flex-direction: row;
+    /*flex-direction: row-reverse;*/
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+    align-content: center; /*  SOLUTION: Set both the justify-content and align-items properties to center, and the flex item will be perfectly centered: */
+
+    border: 1px solid teal;
+    background-color: rgba(0, 128, 128, 0.26);
+}
+
+.flex-container-row-wrap:after {
+    font-size: 9px;
+    font-size: 0.9rem;
+    content: attr(title);
+    color: steelblue;
+    position: absolute;
+
+}
+
+.flex-container-column-nowrap {
+    height: 600px;
+    /*height: auto;*/
+    /*width: auto;*/
+    width: 600px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    /*flex-direction: column-reverse;*/
+
+
+    border: 1px solid teal;
+    background-color: rgba(0, 128, 128, 0.26);
+}
+
+.flex-container-column-nowrap:after {
+    font-size: 9px;
+    font-size: 0.9rem;
+    content: attr(title);
+    color: steelblue;
+    position: absolute;
+}
+
+.flex-container-column-wrap {
+    height: 600px;
+    /*height: auto;*/
+    /*width: auto;*/
+    width: 600px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    /*flex-direction: column-reverse;*/
+
+
+
+    border: 1px solid teal;
+    background-color: rgba(0, 128, 128, 0.26);
+}
+
+.flex-container-column-wrap:after {
+    font-size: 9px;
+    font-size: 0.9rem;
+    content: attr(title);
+    color: steelblue;
+    position: absolute;
+}
+
+.flex-item {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    padding: 20px;
+
+    text-align: center;
+    font-size: 30px;
+    font-size: 3.2rem;
+    color: teal;
+    background-color: #f1f1f1;
+}
+
+.flex-item:after {
+    font-size: 9px;
+    font-size: 0.9rem;
+    content: ' \a (150x150) \a' attr(title) ' ';
+    white-space: pre;
+    color: steelblue;
+    position: relative;
+
+}
+
+/* HD 1360x768; HD+ 1600x900; FHD 1920x1080; QHD 2560x1440; 4K UHD 3840x2160; 8K UHD 7680×4320 */
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 100%;
+        background-color: lightgoldenrodyellow;
+    }
+}
