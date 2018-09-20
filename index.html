@@ -36,7 +36,13 @@
         <h2>About</h2>
         <h5>We are:</h5>
         <div class="img-responsive">
-            <img   src="img/img1.jpg" alt="">
+            <figure>
+                <img src="img/img1.jpg" alt="">
+                <figcaption>
+                    < figure > < figcaption >
+                </figcaption>
+            </figure>
+
         </div>
         <p>The National Aeronautics and Space Administration is an independent agency of the United States Federal
             Government responsible for the civilian space program, as well as aeronautics and aerospace research.</p>
@@ -47,14 +53,50 @@
         <div class="fakeimg" style="height:60px;">Image</div>
         <br>
         <div class="fakeimg" style="height:60px;">Image</div>
+        <br>
+
+        <p>Select</p>
+        
+        <select>
+            <optgroup label="Dark Colors">
+                <option>Brown</option>
+                <option selected>Black</option>
+                <option>Purple</option>
+            </optgroup>
+            <optgroup label="Light Colors">
+                <option>Yellow</option>
+                <option>White</option>
+                <option>Pink</option>
+            </optgroup>
+        </select>
+
+
+        <br>
+        <br>
+
+        <p>Form</p>
+        <form action="/destination" method="post">
+            <fieldset>
+                <legend>Legend</legend>
+                <label for="first">Label</label>
+                <input type="text" name="first" placeholder="First Name" required>
+                <br>
+                <label for="last">Label</label>
+                <input type="text" name="last" placeholder="placeholder">
+            </fieldset>
+            <input type="submit" value="submit">
+            <input type="reset" value="reset">
+        </form>
+
+
     </div>
     <div class="main">
 
         <h2>NASA</h2>
         <h5>Post description, Dec 17, 2018</h5>
         <a href="https://en.wikipedia.org/wiki/NASA" target="_blank">
-                <div class="img-responsive">
-                    <img src="img/img4.jpg" alt="">
+            <div class="img-responsive">
+                <img src="img/img4.jpg" alt="">
             </div>
             <!--<img style="height:200px; max-width:100%; padding: 20px;" src="img/img4.jpg" alt="">-->
             <p>Read more ...</p>
@@ -79,6 +121,27 @@
         <p>Here are some selected examples of missions to planetary-sized objects. Other major targets of study are the
             Earth itself, the Sun, and smaller solar system bodies like asteroids and comets. In addition, the moons of
             the planets or body are also studied.</p>
+        <table>
+            <caption>This is a table caption.</caption>
+            <thead>
+            <tr>
+                <th>Column Heading 1</th>
+                <th>Column Heading 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>(1, 1)</td>
+                <td>(1, 2)</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>(2, 1)</td>
+                <td>(2, 2)</td>
+            </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
 
