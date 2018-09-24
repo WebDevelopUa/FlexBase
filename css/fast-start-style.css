@@ -35,12 +35,40 @@ a {
 }
 
 /* Style the navigation bar links */
-.navbar a,
-.search-input {
+.navbar a {
     color: white;
     padding: 14px 20px;
     text-decoration: none;
     text-align: center;
+}
+
+.search-input {
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
 }
 
 /* Change color on hover */
