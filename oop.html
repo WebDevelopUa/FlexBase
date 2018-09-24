@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OOP</title>
+</head>
+<body>
+
+<p>Invoking a Function as Object Method</p>
+<pre>
+	<code>
+        "use strict"; //  supported by all modern browsers; makes it easier to write "secure" code
+
+        // function "getName" belongs to the object "person" (is the owner of the function)
+
+        var person = {
+            id: 0,
+            firstName: "First_Name",
+            lastName: "Last_Name",
+
+            getName: function () {
+                return this.firstName + ' ' + this.lastName;
+            },
+            getId: function () {
+                return this.id;
+            },
+            getAll: function () {
+                return this;
+            }
+        };
+
+        var student = {
+            id: 10,
+            firstName: "Tom",
+            lastName: "Jones",
+        };
+
+        var mentor = {
+            id: 1,
+            firstName: "Bruce",
+            lastName: "Lee"
+        };
+
+        console.log(
+            person.getId(),
+            person.getName(),
+        );
+        // 0 'First_Name Last_Name'
+
+        // With call(), an object can use a method belonging to another object.
+        console.log(
+            person.getId.call(student),
+            person.getName.call(student),
+            person.getAll.call(student)
+        );
+        // 10 'Tom Jones' { id: 10, firstName: 'Tom', lastName: 'Jones' }
+
+        console.log(
+            person.getId.apply(mentor),
+            person.getName.apply(mentor),
+        );
+        // 1 'Bruce Lee'
+	</code>
+</pre>
+
+<hr>
+<p>Invoking a Function with a Function Constructor</p>
+<pre>
+    <code>
+        "use strict";
+
+        // adding a property to a constructor function
+        function Person(id, firstName, lastName) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+
+            this.name = function () {
+                return this.firstName + ' ' + this.lastName
+            };
+
+            this.changeName = function (changedFirstName, changedLastName) {
+                 this.firstName = changedFirstName;
+                 this.lastName = changedLastName;
+            }
+        }
+
+        // calling the constructor function with the "new" keyword
+        var student = new Person(1, "First_Name", "Last_Name");
+
+        console.log(student.id);
+        // 1
+
+        console.log(student.firstName);
+        // First_Name
+
+
+        // changing student name
+        student.changeName("Dick", "Tracy");
+        console.log(student.name());
+        // Dick Tracy
+
+        console.log('----------------------');
+
+        // adding a property to an object "student"
+        student.age = 20;
+        console.log(student);
+        // Person {id: 1, firstName: 'Dick', lastName: 'Tracy', name: [Function], changeName: [Function], age: 20 }
+
+
+
+    </code>
+</pre>
+
+
+<hr>
+<p>Invoking a Function with a Function Constructor</p>
+<pre>
+    <code>
+        "use strict";
+
+        function Person(id, firstName, lastName) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        // adding a property to a constructor function
+        Person.prototype.nationality = "UK";
+
+        // add new methods to objects constructors
+        Person.prototype.name = function () {
+            return this.firstName + ' ' + this.lastName
+        };
+
+        Person.prototype.changeName = function (changedFirstName, changedLastName) {
+            this.firstName = changedFirstName;
+            this.lastName = changedLastName;
+        };
+
+        // calling the constructor function with the "new" keyword
+        var student = new Person(1, "First_Name", "Last_Name");
+
+        console.log(student.id);
+        // 1
+
+        console.log(student.firstName);
+        // First_Name
+
+        console.log(student.nationality);
+        // UK
+
+
+        // changing student name
+        student.changeName("Dick", "Tracy");
+        console.log(student.name());
+        // Dick Tracy
+
+        console.log('----------------------');
+
+        // adding a property to an object "student"
+        student.age = 20;
+        console.log(student);
+        // Person { id: 1, firstName: 'Dick', lastName: 'Tracy', age: 20 }
+    </code>
+</pre>
+
+<hr>
+<p>Class inheritance in JavaScript</p>
+<pre>
+    <code>
+        "use strict";
+
+        // --------- Parent class ------------
+
+        function Person(id, firstName, lastName) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        Person.prototype.getName = function () {
+            return this.firstName + ' ' + this.lastName;
+        };
+
+        // --------- The child-class -----------
+
+        function Student(id, firstName, lastName) {
+            Person.apply(this, arguments)
+            // Person.call(this, id, firstName, lastName)
+        }
+
+        // inheritance
+        Student.prototype = Object.create(Person.prototype);
+        Student.prototype.constructor = Student;
+
+        Student.prototype.getName = function () {
+            Person.prototype.getName.apply(this);
+            return this.firstName + ' ' + this.lastName;
+        };
+
+        // calling the constructor function with the "new" keyword
+        var student = new Student(1, "Bob", "Getty");
+
+        console.log(student.id);
+        // 1
+
+        console.log(student.firstName);
+        // Bob
+
+        console.log(student.getName());
+        // Bob Getty
+
+        console.log(student);
+        // Student { id: 1, firstName: 'Bob', lastName: 'Getty' }
+
+        console.log('-----------------------');
+
+        console.log(student instanceof Student);
+        // true
+
+        console.log(student instanceof Person);
+        // true
+
+        console.log(Student.prototype.isPrototypeOf(student));
+        // true
+
+        console.log(Person.prototype.isPrototypeOf(student));
+        // true
+    </code>
+</pre>
+
+<hr>
+
+<p> Написать класс Dog, который наследуется от класа Animal</p>
+<p> Класс Animal имеет метод getName (name можно передать в конструктор)</p>
+<p> Класс Dog имеет метод bark (возвращает строку «Dog {dogname} is barking»</p>
+<p> ООП в прототипном стиле</p>
+<pre>
+    <code>
+        "use strict";
+
+        // --------- Parent class ------------
+        function Animal(name) {
+            this.name = name;
+        }
+
+        Animal.prototype.getName = function () {
+            return this.name;
+        };
+
+        // --------- The child-class -----------
+        function Dog(name) {
+            Animal.call(this, name);
+            // Animal.apply(this, arguments);
+        }
+
+        // --------- Inheritance -----------
+        Dog.prototype = Object.create(Animal.prototype);
+        Dog.prototype.constructor = Dog;
+
+        // --------- Creating method after Inheritance -----------
+        Dog.prototype.bark = function (name) {
+            Animal.prototype.getName.call(this, name);
+            // Animal.prototype.getName.apply(this);
+            return 'Dog ' + this.name + ' is barking';
+        };
+
+        // --------- Creating new Object -----------
+        var dog = new Dog('Tuzik');
+
+        // --------- Output -----------
+        console.log(dog.bark());
+        // Dog Tuzik is barking
+
+        console.log(dog.getName());
+        // Tuzik
+
+        console.log('-----------------------');
+
+        // --------- Test -----------
+        console.log(dog.getName() === 'Tuzik');
+        // true
+
+        console.log(dog.bark() === 'Dog Tuzik is barking');
+        // true
+    </code>
+</pre>
+
+<hr>
+
+<p> Написать класс Dog, который наследуется от класа Animal</p>
+<p> Класс Animal имеет метод getName (name можно передать в конструктор)</p>
+<p> Класс Dog имеет метод bark (возвращает строку «Dog {dogname} is barking»</p>
+<p> ООП в прототипном стиле ECMAScript 6 - ECMAScript 2015</p>
+<pre>
+    <code>
+        "use strict";
+
+        // --------- Parent class ------------
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+
+            getName() {
+                return this.name;
+            }
+
+        }
+
+        // --------- Inheritance -----------
+        // using "extends"
+
+        // --------- The child-class -----------
+        class Dog extends Animal {
+
+            // String Substitution using the ${ } syntax
+            bark() {
+                return `Dog ${this.name} is barking`;
+            }
+        }
+
+
+        // --------- Creating new Object -----------
+        var dog = new Dog('Tuzik');
+
+        // --------- Output -----------
+        console.log(dog.bark());
+        // Dog Tuzik is barking
+
+        console.log(dog.getName());
+        // Tuzik
+
+        console.log('-----------------------');
+
+        // --------- Test -----------
+        console.log(dog.getName() === 'Tuzik');
+        // true
+
+        console.log(dog.bark() === 'Dog Tuzik is barking');
+        // true
+    </code>
+</pre>
+
+
+<hr>
+
+<p> Написать класс Dog, который наследуется от класа Animal</p>
+<p> Класс Animal имеет метод getName (name можно передать в конструктор)</p>
+<p> Класс Dog имеет метод bark (возвращает строку «Dog {dogname} is barking»</p>
+<p> ООП в функциональном стиле. Функциональное наследование</p>
+<pre>
+    <code>
+        "use strict";
+
+        // --------- Parent class ------------
+        function Animal(name) {
+            this._name = name;
+
+            this.getName = function () {
+                return this._name;
+            }
+        }
+
+        // --------- Inheritance -----------
+        // using "call(this, name)" or "apply(this, arguments)"
+
+        // --------- The child-class -----------
+        function Dog(name) {
+            Animal.call(this, name);
+            // Animal.apply(this, arguments);
+
+            this.bark = function () {
+                return "Dog " + this._name + " is barking";
+            }
+        }
+
+        // --------- Creating new Object -----------
+        var animal = new Animal('Alien');
+        var dog = new Dog('Tuzik');
+
+        // --------- Output -----------
+        console.log(animal.getName());
+        // Alien
+
+        console.log(dog.bark());
+        // Dog Tuzik is barking
+
+        console.log(dog.getName());
+        // Tuzik
+
+        console.log('-----------------------');
+
+        // --------- Test -----------
+        console.log(dog.getName() === 'Tuzik');
+        // true
+
+        console.log(dog.bark() === 'Dog Tuzik is barking');
+        // true
+    </code>
+</pre>
+
+<hr>
+
+</body>
+</html>
